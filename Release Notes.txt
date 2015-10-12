@@ -8,6 +8,9 @@ Feel free to share your thoughts @ xgarmanboziax@gmail.com about:
 
 ------------
 
+v0.2	12 October 2015:
+- Filtering only when get value
+
 v0.1	12 October 2015:
 - First test release
 minor:

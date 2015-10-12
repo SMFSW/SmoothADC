@@ -19,7 +19,7 @@
 */
  
 /*
-	12 October 2015		- First test release (v0.1)
+	12 October 2015		- First test release
 */
 
 extern "C" {
@@ -69,7 +69,7 @@ void SmoothADC::Filtering()
 	
 	memcpy(temp, ADCChannel.ADCTab, sizeof(temp));	// Tab copy before average calc
 	
-	// Retrieve min value on 0 idx tab
+	// Retrieve max value on 0 idx tab
 	for (c = 1 ; c < DEF_NB_ACQ ; c++)
 	{
 		if (temp[0] < temp[c])
@@ -80,7 +80,7 @@ void SmoothADC::Filtering()
 		}
 	}
 	
-	// Retrieve max value on 3 idx tab
+	// Retrieve min value on 3 idx tab
 	for (c = 1 ; c < (DEF_NB_ACQ-1) ; c++)
 	{
 		if (temp[DEF_NB_ACQ-1] > temp[c])
@@ -98,27 +98,24 @@ void SmoothADC::Filtering()
 #define		DEF_BIT_ACQ		0x80U						//!< Bit used to specify all acquisitions ok (MSB)
 #define		DEF_MSQ_NumAcq	(uint8_t) (~DEF_BIT_ACQ)	//!< Other bits in NumAcq (7 LSBs)
 
-bool SmoothADC::serviceADCPin()
+void SmoothADC::serviceADCPin()
 {
 	if (En == true)
 	{
-		if (SmoothADC::TestAcqRate() == true)
+		if (TestAcqRate() == true)
 		{
 			ADCChannel.ADCTab[ADCChannel.NumAcq & DEF_MSQ_NumAcq] = analogRead(ADCPin);
 			
 			if (((++ADCChannel.NumAcq) & DEF_MSQ_NumAcq) >= DEF_NB_ACQ)	{ ADCChannel.NumAcq = DEF_BIT_ACQ; }
-			
-			if (ADCChannel.NumAcq & DEF_BIT_ACQ)
-			{
-				SmoothADC::Filtering();
-				return true;	// true if module enabled & Filtering executed
-			}
-			
-			return false;	// false if module enabled, but Filtering not yet executed
 		}
 	}
+}
+
+uint16_t SmoothADC::getADCVal()
+{
+	if (ADCChannel.NumAcq & DEF_BIT_ACQ)	{ Filtering(); }
 	
-	return false;	// false if module disabled
+	return ADCChannel.Average;
 }
 
 void SmoothADC::dbgInfo()			// needs SCI initialized in sketch setup

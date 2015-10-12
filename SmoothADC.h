@@ -38,8 +38,12 @@ private:
 
 public:
 	void init(uint16_t Pin, uint16_t Period);
-	bool serviceADCPin();
+	void serviceADCPin();
 	void dbgInfo();			// needs SCI initialized in sketch setup
+	
+	uint16_t getADCVal();/* __attribute__((always_inline)) {
+		return ADCChannel.Average;
+	}*/
 	
 	void setPin(uint16_t Pin) __attribute__((always_inline)) {
 		ADCPin = Pin;
@@ -55,10 +59,6 @@ public:
 	
 	uint16_t getPeriod() __attribute__((always_inline)) {
 		return AcqPeriod;
-	}
-	
-	uint16_t getADCVal() __attribute__((always_inline)) {
-		return ADCChannel.Average;
 	}
 	
 	void enable() __attribute__((always_inline)) {

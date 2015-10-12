@@ -34,8 +34,8 @@ void loop()
 	unsigned int	tempTime = millis();
 	String			toSerial = "";
 	
-	(void) ADC0.serviceADCPin();
-	(void) ADC1.serviceADCPin();
+	ADC0.serviceADCPin();
+	ADC1.serviceADCPin();
 	
 	if ((tempTime - MemTimeSerial) > 1000)
 	{
