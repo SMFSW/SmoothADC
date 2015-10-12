@@ -51,7 +51,7 @@ void loop()
 		MemoTimeSerial = tempTime;
 		
 		ADC0Value = ADC0.getADCVal();
-		ADC0Value = ADC1.getADCVal();
+		ADC1Value = ADC1.getADCVal();
 		
 		Serial.print("ADC Channel 0:\t");
 		Serial.print(ADC0Value);

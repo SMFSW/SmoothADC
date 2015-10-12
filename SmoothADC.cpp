@@ -19,7 +19,7 @@
 */
  
 /*
-	12 October 2015		- First test release
+	12 October 2015		- First test release (v0.1)
 */
 
 extern "C" {

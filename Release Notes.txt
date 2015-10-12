@@ -1,0 +1,14 @@
+SmoothADC Arduino Library
+2015-2015 SMFSW
+
+Feel free to share your thoughts @ xgarmanboziax@gmail.com about:
+	- issues encountered
+	- optimisations
+	- improvements & new functionalities
+
+------------
+
+v0.1	12 October 2015:
+- First test release
+minor:
+- readme updated (will wait for next release)
