@@ -1,0 +1,16 @@
+{
+"name": "SmoothADC",
+"frameworks": "Arduino",
+"keywords": "init, serviceADCPin, setPin, setPeriod, getPin, getPeriod, getADCVal, enable, disable, isEnabled, isDisabled",
+"description": "Get ADC to return averaged values",
+"url": "http://playground.arduino.cc/Code/SmoothADC",
+"authors":
+{
+        "name": "SMFSW"
+},
+"repository":
+{
+    "type": "git",
+    "url": "https://github.com/SMFSW/SmoothADC"
+}
+}

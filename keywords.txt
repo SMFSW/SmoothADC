@@ -1,0 +1,32 @@
+#######################################
+# Syntax Coloring Map For SmoothADC
+#######################################
+
+#######################################
+# Datatypes (KEYWORD1)
+#######################################
+SmoothADC	KEYWORD1
+
+#######################################
+# Methods and Functions (KEYWORD2)
+#######################################
+init	KEYWORD2
+serviceADCPin	KEYWORD2
+setPin	KEYWORD2
+setPeriod	KEYWORD2
+getPin	KEYWORD2
+getPeriod	KEYWORD2
+getADCVal	KEYWORD2
+enable	KEYWORD2
+disable	KEYWORD2
+isEnabled	KEYWORD2
+isDisabled	KEYWORD2
+
+#######################################
+# Instances (KEYWORD2)
+#######################################
+
+#######################################
+# Constants (LITERAL1)
+#######################################
+DEF_NB_ACQ	LITERAL1
