@@ -8,6 +8,11 @@ Feel free to share your thoughts @ xgarmanboziax@gmail.com about:
 
 ------------
 
+v0.3	29 June 2017:
+- Fixed issue #2 time test (experienced with 32b boards)
+- Updated ADCx names in example, so that it doesn't shadow names already defined on some boards
+- improved README.md formatting
+
 v0.2	12 October 2015:
 - Filtering only when get value
 

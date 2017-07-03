@@ -20,6 +20,7 @@
  
 /*
 	12 October 2015		- First test release
+	29 June 2017		- added unsigned cast in time test (potential issue on 32b boards)
 */
 
 extern "C" {
@@ -50,9 +51,9 @@ void SmoothADC::init(uint16_t Pin, uint16_t Period)
 
 bool SmoothADC::TestAcqRate()
 {
-	uint16_t	tempTime = millis();
+	uint16_t tempTime = millis();
 	
-	if ((tempTime - MemTimeAcq) >= AcqPeriod)
+	if ((uint16_t) (tempTime - MemTimeAcq) >= AcqPeriod)
 	{
 		MemTimeAcq = tempTime;
 		return true;
@@ -64,8 +65,8 @@ bool SmoothADC::TestAcqRate()
 
 void SmoothADC::Filtering()
 {
-	uint16_t	temp[DEF_NB_ACQ], swap;
-	uint8_t		c;
+	uint16_t		temp[DEF_NB_ACQ], swap;
+	unsigned int	c;
 	
 	memcpy(temp, ADCChannel.ADCTab, sizeof(temp));	// Tab copy before average calc
 	
@@ -95,6 +96,7 @@ void SmoothADC::Filtering()
 	ADCChannel.Average = ((temp[1] + temp[2]) / 2);
 }
 
+
 #define		DEF_BIT_ACQ		0x80U						//!< Bit used to specify all acquisitions ok (MSB)
 #define		DEF_MSQ_NumAcq	(uint8_t) (~DEF_BIT_ACQ)	//!< Other bits in NumAcq (7 LSBs)
 
@@ -105,24 +107,24 @@ void SmoothADC::serviceADCPin()
 		if (TestAcqRate() == true)
 		{
 			ADCChannel.ADCTab[ADCChannel.NumAcq & DEF_MSQ_NumAcq] = analogRead(ADCPin);
-			
-			if (((++ADCChannel.NumAcq) & DEF_MSQ_NumAcq) >= DEF_NB_ACQ)	{ ADCChannel.NumAcq = DEF_BIT_ACQ; }
+			if ((ADCChannel.NumAcq++ & DEF_MSQ_NumAcq) >= DEF_NB_ACQ)	{ ADCChannel.NumAcq = DEF_BIT_ACQ; }
 		}
 	}
 }
 
+
 uint16_t SmoothADC::getADCVal()
 {
 	if (ADCChannel.NumAcq & DEF_BIT_ACQ)	{ Filtering(); }
-	
 	return ADCChannel.Average;
 }
+
 
 void SmoothADC::dbgInfo()			// needs SCI initialized in sketch setup
 {
 	#ifdef DEBUG
-	String		dbgInfo = "";
-	uint8_t		c;
+	String			dbgInfo = "";
+	unsigned int	c;
 	
 	dbgInfo += "!> ";
 	dbgInfo += "Pin A";

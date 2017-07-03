@@ -1,4 +1,5 @@
 # SmoothADC
+
 Arduino library for smooth ADC results
 
 The SmoothADC library helps filtering ADC values when smoother evolution of values is needed (getting rid of pikes for example).
@@ -7,99 +8,68 @@ The SmoothADC library helps filtering ADC values when smoother evolution of valu
 I tried to keep the lib as tiny as possible.
 Sorry if somewhat messy, it's my first ino lib...
 
-Feel free to share your thoughts @ xgarmanboziax@gmail.com about:
-  - issues encountered
-  - optimisations
-  - improvements & new functionalities
-
-
-
-## Example sketch:
+## Example sketch
 
 This example defines A0 & A1 (analog inputs) to be handled by SmoothADC library
+
 Samples every 50ms for A0
+
 Samples every 100ms for A1
+
 Every second, the average value from A0 & A1 are sent to serial port
-```arduino
-#include <SmoothADC.h>
 
-SmoothADC		ADC0;				// SmoothADC instance for Pin 0
-SmoothADC		ADC1;				// SmoothADC instance for Pin 1
-unsigned int	ADC0Value = 0;		// ADC0 final value
-unsigned int	ADC1Value = 0;		// ADC1 final value
+## Functional reference
 
-unsigned int	MemoTimeSerial;
+#### instName.init(Pin, Period)
 
-void setup()
-{
-	Serial.begin(9600);
+- Init the smoothADC instance instName on pin "Pin" with a sample rate of "Period" ms
 
-	ADC0.init(A0, 50);	// Init ADC0 attached to A0 with a 50ms acquisition period
-	if (ADC0.isDisabled())	{ ADC0.enable(); }
-	ADC1.init(A1, 100);	// Init ADC1 attached to A1 with a 100ms acquisition period
-	if (ADC1.isDisabled())	{ ADC1.enable(); }
-}
+#### instName.serviceADCPin()
 
-void loop()
-{
-	unsigned int tempTime = millis();
+- Method to service the ADC pin when module is enabled (should be placed somewhere in the main loop)
 
-	(void) ADC0.serviceADCPin();
-	(void) ADC1.serviceADCPin();
+#### instName.getADCVal()
 
-	if ((tempTime - MemoTimeSerial) > 1000)
-	{
-		MemoTimeSerial = tempTime;
+- Get the average ADC pin value (should replace usual analogRead)
 
-		ADC0Value = ADC0.getADCVal();
-		ADC1Value = ADC1.getADCVal();
+#### instName.setPin()
 
-		Serial.print("ADC Channel 0:\t");
-		Serial.print(ADC0Value);
-		Serial.print("\tADC Channel 1:\t");
-		Serial.println(ADC1Value);
-	}
-}
-```
+- Set ADC pin to service
 
+#### instName.setPeriod()
 
+- Set sample rate of servicing (in ms)
 
-## Functional reference:
+#### instName.getPin()
 
-#### `instName.init(Pin, Period)`
-Description: Init the smoothADC instance instName on pin "Pin" with a sample rate of "Period" ms
+- Get the serviced ADC pin
 
-#### `instName.serviceADCPin()`
-Description: Method to service the ADC pin when module is enabled (should be placed somewhere in the main loop)
+#### instName.getPeriod()
 
-#### `instName.getADCVal()`
-Description: Get the average ADC pin value (should replace usual analogRead)
+- Get the sample rate of the serviced pin
 
-#### `instName.setPin(Pin)`
-Description: Set ADC pin to service
+#### instName.enable()
 
-#### `instName.setPeriod(Period)`
-Description: Set sample rate of servicing (in ms)
+- Enable ADC smoothing module
 
-#### `instName.getPin()`
-Description: Get the serviced ADC pin
+#### instName.disable()
 
-#### `instName.getPeriod()`
-Description: Get the sample rate of the serviced pin
+- Disable ADC smoothing module
 
-#### `instName.enable()`
-Description: Enable ADC smoothing module
+#### instName.isEnabled()
 
-#### `instName.disable()`
- Description: Disable ADC smoothing module
+- Test if ADC smoothing is enabled
 
-#### `instName.isEnabled()`
-Description: Test if ADC smoothing is enabled
+#### instName.isDisabled()
 
-#### `instName.isDisabled()`
-Description: Test if ADC smoothing is disabled
+- Test if ADC smoothing is disabled
 
+## Misc
 
+Doxygen doc can be generated for the class using doxyfile.
 
-## FAQ
-N/A Yet
+Feel free to share your thoughts @ xgarmanboziax@gmail.com about:
+
+- issues encountered
+- optimisations
+- improvements & new functionalities
