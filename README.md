@@ -66,8 +66,6 @@ Every second, the average value from A0 & A1 are sent to serial port
 
 ## Misc
 
-Doxygen doc can be generated for the class using doxyfile.
-
 Feel free to share your thoughts @ xgarmanboziax@gmail.com about:
 
 - issues encountered

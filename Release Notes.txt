@@ -1,5 +1,5 @@
 SmoothADC Arduino Library
-2015-2015 SMFSW
+2015-2017 SMFSW
 
 Feel free to share your thoughts @ xgarmanboziax@gmail.com about:
 	- issues encountered
@@ -7,6 +7,10 @@ Feel free to share your thoughts @ xgarmanboziax@gmail.com about:
 	- improvements & new functionalities
 
 ------------
+
+** Actual:
+v0.4	12 Jul 2017:
+- compliance with Arduino v1.5+ IDE source located in src subfolder
 
 v0.3	29 June 2017:
 - Fixed issue #2 time test (experienced with 32b boards)

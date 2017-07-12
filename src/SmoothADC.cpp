@@ -1,36 +1,20 @@
-/*
-	SmoothADC.cpp - Get ADC to return averaged values
-	Copyright (c) 2015-2015 SMFSW.
-	
-	Feel free to share your thoughts @ xgarmanboziax@gmail.com about:
-		- issues encountered
-		- optimisations
-		- improvements & new functionalities
+/*!\file SmoothADC.cpp
+** \author SMFSW
+** \version 0.4
+** \date 2017/07/12
+** \copyright GNU LESSER GENERAL PUBLIC LICENSE (c) 2017, SMFSW
+** \brief Get ADC to return averaged values
+**/
 
-	This library is free software; you can redistribute it and/or
-	modify it under the terms of the GNU Lesser General Public
-	License as published by the Free Software Foundation; either
-	version 2.1 of the License, or (at your option) any later version.
-
-	This library is distributed in the hope that it will be useful,
-	but WITHOUT ANY WARRANTY; without even the implied warranty of
-	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
-	Lesser General Public License for more details.
-*/
- 
-/*
-	12 October 2015		- First test release
-	29 June 2017		- added unsigned cast in time test (potential issue on 32b boards)
-*/
 
 extern "C" {
 #include <string.h> // for memcpy
 }
 
 #if ARDUINO > 22
-#include <Arduino.h> 
+#include <Arduino.h>
 #else
-#include <WProgram.h> 
+#include <WProgram.h>
 #endif
 
 #ifdef DEBUG

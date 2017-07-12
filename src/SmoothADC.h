@@ -1,4 +1,10 @@
-//	SmoothADC.h - ADC filtering on ADC Pin of choice
+/*!\file SmoothADC.h
+** \author SMFSW
+** \version 0.4
+** \date 2017/07/12
+** \copyright GNU LESSER GENERAL PUBLIC LICENSE (c) 2017, SMFSW
+** \brief Get ADC to return averaged values
+**/
 
 #ifndef SmoothADC_h
 #define SmoothADC_h
