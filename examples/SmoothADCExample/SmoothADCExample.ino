@@ -5,7 +5,7 @@
  *
  *
  * Samples every 50ms for A0
- * Samples every 100ms for A1
+ * Samples every 500us for A1
  *
  * Every second, the average value from A0 & A1 are sent to serial port
  */
@@ -23,9 +23,9 @@ void setup()
 {
 	Serial.begin(9600);
 
-	ADC_0.init(A0, 50);	// Init ADC0 attached to A0 with a 50ms acquisition period
+	ADC_0.init(A0, TB_MS, 50);	// Init ADC0 attached to A0 with a 50ms acquisition period
 	if (ADC_0.isDisabled())	{ ADC_0.enable(); }
-	ADC_1.init(A1, 20);	// Init ADC1 attached to A1 with a 20ms acquisition period
+	ADC_1.init(A1, TB_US, 500);	// Init ADC1 attached to A1 with a 500us acquisition period
 	if (ADC_1.isDisabled())	{ ADC_1.enable(); }
 }
 

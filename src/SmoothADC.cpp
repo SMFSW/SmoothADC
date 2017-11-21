@@ -1,7 +1,7 @@
 /*!\file SmoothADC.cpp
 ** \author SMFSW
-** \version 0.4
-** \date 2017/07/12
+** \version 1.0
+** \date 2017/11/21
 ** \copyright GNU LESSER GENERAL PUBLIC LICENSE (c) 2017, SMFSW
 ** \brief Get ADC to return averaged values
 **/
@@ -24,20 +24,21 @@ extern "C" {
 #include "SmoothADC.h"
 
 
-void SmoothADC::init(uint16_t Pin, uint16_t Period)
+void SmoothADC::init(const uint16_t Pin, const tick_base Res, const uint32_t Period)
 {
 	pinMode(Pin, INPUT);
 	ADCPin = Pin;
+	setResolution(Res);
 	AcqPeriod = Period;
 	ADCChannel.NumAcq = 0;
 }
 
 
-bool SmoothADC::TestAcqRate()
+bool SmoothADC::TestAcqRate(void)
 {
-	uint16_t tempTime = millis();
+	uint32_t tempTime = get_tick();
 	
-	if ((uint16_t) (tempTime - MemTimeAcq) >= AcqPeriod)
+	if (tempTime - MemTimeAcq >= AcqPeriod)
 	{
 		MemTimeAcq = tempTime;
 		return true;
@@ -47,7 +48,7 @@ bool SmoothADC::TestAcqRate()
 }
 
 
-void SmoothADC::Filtering()
+void SmoothADC::Filtering(void)
 {
 	uint16_t		temp[DEF_NB_ACQ], swap;
 	unsigned int	c;
@@ -84,7 +85,7 @@ void SmoothADC::Filtering()
 #define		DEF_BIT_ACQ		0x80U						//!< Bit used to specify all acquisitions ok (MSB)
 #define		DEF_MSQ_NumAcq	(uint8_t) (~DEF_BIT_ACQ)	//!< Other bits in NumAcq (7 LSBs)
 
-void SmoothADC::serviceADCPin()
+void SmoothADC::serviceADCPin(void)
 {
 	if (En == true)
 	{
@@ -97,14 +98,14 @@ void SmoothADC::serviceADCPin()
 }
 
 
-uint16_t SmoothADC::getADCVal()
+uint16_t SmoothADC::getADCVal(void)
 {
 	if (ADCChannel.NumAcq & DEF_BIT_ACQ)	{ Filtering(); }
 	return ADCChannel.Average;
 }
 
 
-void SmoothADC::dbgInfo()			// needs SCI initialized in sketch setup
+void SmoothADC::dbgInfo(void)			// needs SCI initialized in sketch setup
 {
 	#ifdef DEBUG
 	String			dbgInfo = "";
@@ -115,7 +116,8 @@ void SmoothADC::dbgInfo()			// needs SCI initialized in sketch setup
 	dbgInfo += (getPin() - A0);
 	dbgInfo += ",\tRate: ";
 	dbgInfo += getPeriod();
-	dbgInfo += "ms";
+	if (getResolution() == TB_US)	{ dbgInfo += "us"; }
+	else							{ dbgInfo += "ms"; }
 	Serial.println(dbgInfo);
 	dbgInfo.remove(0);
 	dbgInfo += "!> ";

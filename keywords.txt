@@ -6,6 +6,9 @@
 # Datatypes (KEYWORD1)
 #######################################
 SmoothADC	KEYWORD1
+SmoothADCAcq_t	KEYWORD1
+ADCId	KEYWORD1
+tick_base	KEYWORD1
 
 #######################################
 # Methods and Functions (KEYWORD2)
@@ -13,8 +16,10 @@ SmoothADC	KEYWORD1
 init	KEYWORD2
 serviceADCPin	KEYWORD2
 setPin	KEYWORD2
+setResolution	KEYWORD2
 setPeriod	KEYWORD2
 getPin	KEYWORD2
+getResolution	KEYWORD2
 getPeriod	KEYWORD2
 getADCVal	KEYWORD2
 enable	KEYWORD2

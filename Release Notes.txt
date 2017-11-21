@@ -9,6 +9,11 @@ Feel free to share your thoughts @ xgarmanboziax@gmail.com about:
 ------------
 
 ** Actual:
+v1.0	21 Nov 2017:
+- Added time base choice at init
+- Time variables now on 32b
+- Added const qualifier for function parameters
+
 v0.4	12 Jul 2017:
 - compliance with Arduino v1.5+ IDE source located in src subfolder
 
