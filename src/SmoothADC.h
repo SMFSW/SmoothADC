@@ -1,6 +1,5 @@
 /*!\file SmoothADC.h
 ** \author SMFSW
-** \version 1.0
 ** \date 2017/11/21
 ** \copyright GNU LESSER GENERAL PUBLIC LICENSE (c) 2017, SMFSW
 ** \brief Get ADC to return averaged values
