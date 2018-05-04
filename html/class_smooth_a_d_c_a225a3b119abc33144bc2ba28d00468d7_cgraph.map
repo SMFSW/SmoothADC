@@ -1,0 +1,5 @@
+<map id="SmoothADC::dbgInfo" name="SmoothADC::dbgInfo">
+<area shape="rect" id="node2" href="$class_smooth_a_d_c.html#a0fdbf32275a5452853852de2d27a8644" title="Get pin to sevice. " alt="" coords="221,5,363,32"/>
+<area shape="rect" id="node3" href="$class_smooth_a_d_c.html#a01c9d0b117488d9792651d7e18b0d35d" title="Get pin acquisition period. " alt="" coords="213,56,371,83"/>
+<area shape="rect" id="node4" href="$class_smooth_a_d_c.html#a096cfd241a1f955f910d2725f409fb18" title="Get tick resolution. " alt="" coords="200,107,384,133"/>
+</map>
