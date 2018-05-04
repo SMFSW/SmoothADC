@@ -22,7 +22,7 @@ before_install:
    - source <(curl -SLs https://raw.githubusercontent.com/SMFSW/travis-ci-arduino/master/install.sh)
 
 script:
-   - build_main_platforms
+   - build_avr_platforms
 
 # Generate and deploy documentation
 after_success:
