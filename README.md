@@ -1,4 +1,4 @@
-# SmoothADC [![Build Status](https://travis-ci.org/SMFSW/SmoothADC.svg?branch=master)](https://travis-ci.org/SMFSW/SmoothADC)
+# SmoothADC [![Build Status](https://travis-ci.com/SMFSW/SmoothADC.svg?branch=master)](https://travis-ci.com/SMFSW/SmoothADC)
 
 Arduino library for smooth ADC results
 
