@@ -1,4 +1,4 @@
-# SmoothADC
+# SmoothADC [![CodeFactor](https://www.codefactor.io/repository/github/smfsw/smoothadc/badge)](https://www.codefactor.io/repository/github/smfsw/smoothadc)
 
 Arduino library for smooth ADC results
 
